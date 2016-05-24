@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ACSPinKit"
-  s.version          = "1.0.3"
+  s.version          = "1.0.4"
   s.summary          = "ACSPinKit is PIN/Passcode verification framework with focus on a good and modular architecture."
   s.description      = <<-DESC
 						ACSPinKit provides functionality for passcode creation, change and verification.
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage         = "http://arconsis.com"
   s.license          = 'MIT'
-  s.author           = { "arconsis IT-Solutions GmbH" => "kontakt@arconsis.com" }
+  s.author           = { "arconsis IT-Solutions GmbH" => "contact@arconsis.com" }
   s.source           = { :git => "https://github.com/arconsis/ACSPinKit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/arconsis'
 
