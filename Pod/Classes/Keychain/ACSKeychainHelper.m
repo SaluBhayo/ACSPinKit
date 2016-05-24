@@ -123,14 +123,14 @@
     NSString *currentCountString = [FDKeychain itemForKey:self.pinRetriesCountName forService:self.pinServiceName inAccessGroup:self.accessGroup error:nil];
     NSString *currentMaxString = [FDKeychain itemForKey:self.pinRetriesMaxName forService:self.pinServiceName inAccessGroup:self.accessGroup error:nil];
     
-    if (!currentMaxString.length > 0) {
+    if (!(currentMaxString.length > 0)) {
         NSException* noMaxException = [NSException exceptionWithName:@"ACSKeychainHelperException"
                                                               reason:@"No Retry max count saved"
                                                             userInfo:nil];
         [noMaxException raise];
     }
     
-    if (!currentCountString.length > 0) {
+    if (!(currentCountString.length > 0)) {
         return [ACSPinFormatterHelper integerFromNumberString:currentMaxString];
     }
     
