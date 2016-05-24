@@ -41,18 +41,18 @@
 #pragma mark - Application Delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     self.defaultsUtil = [[ACSDefaultsUtil alloc] init];
-
+    
     self.pinController = [[ACSPinController alloc] initWithPinServiceName:@"testservice" pinUserName:@"testuser" accessGroup:@"accesstest" delegate:self];
     self.pinController.retriesMax = 5;
-
+    
     // Validation block for pin controller to check if entered pin is valid. Only when not using touch id.
     __weak ACSAppDelegate *weakSelf = self;
     self.pinController.validationBlock = ^(NSString *pin) {
         return [pin isEqualToString:weakSelf.defaultsUtil.savedPin];
     };
-
+    
     // Customization
     self.pinController.pinCustomizer.titleImage = [UIImage imageNamed:@"arconsis_logo"];
     self.pinController.pinCustomizer.actionButtonImage = [UIImage imageNamed:@"icon_burger"];
@@ -71,7 +71,8 @@
     }
 }
 
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     UIViewController *rootController = window.rootViewController;
     
@@ -81,7 +82,6 @@
     else {
         return UIInterfaceOrientationMaskPortrait;
     }
-    
 }
 
 #pragma mark - Pin controller delegate
