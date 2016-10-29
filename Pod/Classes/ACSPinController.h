@@ -46,14 +46,14 @@
  
  @return An initialized pin controller object or nil if something went wrong
  */
-- (instancetype)initWithPinServiceName:(NSString *)pinServiceName pinUserName:(NSString *)pinUserName accessGroup:(NSString *)accessGroup delegate:(id <ACSPinControllerDelegate>)delegate;
+- (instancetype _Nullable)initWithPinServiceName:(NSString * _Nonnull)pinServiceName pinUserName:(NSString * _Nonnull)pinUserName accessGroup:(NSString * _Nullable)accessGroup delegate:(id <ACSPinControllerDelegate> _Nullable)delegate;
 
 /// @name Customization / Configuration
 
 /**
  Customization object for setting different things like colors, titles, messages and images
  */
-@property (nonatomic) ACSPinCustomizer *pinCustomizer;
+@property (nonatomic) ACSPinCustomizer * _Nonnull pinCustomizer;
 
 /**
  Set the maximum number of retry attempts. Default value is 3.
@@ -64,9 +64,16 @@
  A validation block used for checking if the pin the user entered was valid. E.g. you can test if the typed in pin unlocks a vault and
  return YES or NO. If you provide this validation block the pin is NOT stored in the keychain.
  */
-@property (nonatomic, copy) BOOL (^validationBlock)(NSString *pin);
+@property (nonatomic, copy) BOOL (^ _Nullable validationBlock)(NSString * _Nonnull pin);
 
 /// @name Touch ID
+
+/**
+ Returns if Touch ID is available or not (device does not support it, Touch ID is not enrolled etc.)
+ 
+ @return YES if Touch ID is available, NO if not.
+ */
+@property (nonatomic, readonly) BOOL isTouchIDAvailable;
 
 /**
  Returns if Touch ID is available or not (device does not support it, Touch ID is not enrolled etc.)
@@ -76,7 +83,7 @@
  
  @return YES if Touch ID is available, NO if not.
  */
-- (BOOL)touchIDAvailable:(NSError **)error;
+- (BOOL)touchIDAvailable:(NSError * _Nullable * _Nonnull)error;
 
 /// @name Presentation
 
@@ -85,7 +92,7 @@
  
  @return The verification controller.
  */
-- (UIViewController *)verifyControllerForCustomPresentation;
+- (UIViewController * _Nonnull)verifyControllerForCustomPresentation;
 
 /**
  Full screen controller used for verifying a pin the user enters. You have to present and dismiss the controller manually
@@ -96,7 +103,7 @@
  
  @return The fullscreen verification controller.
  */
-- (UIViewController *)verifyControllerFullscreenForCustomPresentationUsingTouchID:(BOOL)touchID;
+- (UIViewController * _Nonnull)verifyControllerFullscreenForCustomPresentationUsingTouchID:(BOOL)touchID;
 
 
 /**
@@ -104,19 +111,19 @@
  
  @param viewController The view controller used for presenting the pin controller.
  */
-- (void)presentVerifyControllerFromViewController:(UIViewController *)viewController;
+- (void)presentVerifyControllerFromViewController:(UIViewController * _Nonnull)viewController;
 /**
  Presents the change pin controller from a provided view controller
  
  @param viewController The view controller used for presenting the pin controller.
  */
-- (void)presentChangeControllerFromViewController:(UIViewController *)viewController;
+- (void)presentChangeControllerFromViewController:(UIViewController * _Nonnull)viewController;
 /**
  Presents the pin creation controller from a provided view controller
  
  @param viewController The view controller used for presenting the pin controller.
  */
-- (void)presentCreateControllerFromViewController:(UIViewController *)viewController;
+- (void)presentCreateControllerFromViewController:(UIViewController * _Nonnull)viewController;
 
 
 /// @name Keychain PIN access
@@ -128,7 +135,7 @@
  
  @return The pin stored in the keychain or nil if there is no pin present.
  */
-- (NSString *)storedPin;
+- (NSString * _Nullable)storedPin;
 /**
  Stores a given pin to the keychain.
  
@@ -136,7 +143,7 @@
  
  @return A boolean value that indicates whether the pin was stored successfully.
  */
-- (BOOL)storePin:(NSString *)pin;
+- (BOOL)storePin:(NSString * _Nonnull)pin;
 /**
  Removes the stored pin from the keychain.
  

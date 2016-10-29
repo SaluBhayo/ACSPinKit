@@ -150,6 +150,12 @@
     _validationBlock = validationBlock;
     self.pinDelegateManager.validationBlock = validationBlock;
 }
+
+- (BOOL)isTouchIDAvailable
+{
+    return [self touchIDAvailable:nil];
+}
+
 - (BOOL)touchIDAvailable:(NSError **)error
 {
     return [ACSLocalAuthentication biometricsAuthenticationAvailable:error];
